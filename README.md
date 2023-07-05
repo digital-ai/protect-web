@@ -110,6 +110,10 @@ You can set the following values for ```logging```:
 - none - disable logging
 - log - displays errors, warnings, info messages, and log messages
 
+**NOTE:** Multiple targets are not supported when protecting with Webpack.
+
+**NOTE:** Blueprint target options (```input```, ```outputDirectory```, ```outputFile```, ```stdin```, ```ignorePaths``` and ```validateIgnorePaths```) are overwritten with Webpack values.
+
 ## Learn More
 
 Visit www.digital.ai to learn more about Digital.ai protection solutions.
