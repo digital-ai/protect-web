@@ -56,6 +56,18 @@ Notice the object called `blueprint`. To apply essential protection, you only ne
 
 However, you can further customize your protection by modifying the `blueprint` object. For instructions, see the *Digital.ai Web App Protection* online help, which is available from Digital.ai.
 
+`protect` function also accepts an optional `options` object, which allows you to configure how the protection will be applied. The following option is currently configurable:
+
+* verbose [true/false] - when set to true, protection will print out a more verbose output about what it is doing
+* bufferSize [size in bytes] - maximum buffer size for protection logs, default is 500 kilobytes
+
+A modified example from above with a buffer size of 1 megabyte would look like this:
+
+```
+...
+protect(blueprint, {bufferSize: 1048576}).then((output) => {
+...
+```
 
 ### Protect with Webpack
 
@@ -113,6 +125,18 @@ You can set the following values for ```logging```:
 **NOTE:** Multiple targets are not supported when protecting with Webpack.
 
 **NOTE:** Blueprint target options (```input```, ```outputDirectory```, ```outputFile```, ```stdin```, ```ignorePaths``` and ```validateIgnorePaths```) are overwritten with Webpack values.
+
+You can also provide an `options` object, just like for the `protect` function described above.
+
+When using Webpack and verbose setting in `options` object - the `stats` needs to be setup to see the output, as described above.
+
+A modified example from above with a verbose output would look like this:
+
+```
+...
+        new WebpackPlugin(blueprint, {verbose: true})
+...
+```
 
 ## Learn More
 

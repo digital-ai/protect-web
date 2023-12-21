@@ -1,6 +1,6 @@
 {
   "name": "protect-web",
-  "version": "6.6.0",
+  "version": "6.7.0",
   "description": "Digital.ai Web App Protection",
   "main": "index.js",
   "scripts": {
@@ -17,14 +17,12 @@
     "url": "git://github.com/digital-ai/protect-web.git"
   },
   "dependencies": {
+    "axios": "^1.0.0",
     "child-process-promise": "^2.2.1",
-    "download": "^7.1.0",
+    "decompress": "^4.2.1",
+    "dmg": "^0.1.0",
     "fs-extra": "^8.1.0",
-    "querystring": "^0.2.0",
-    "request": "^2.34.0",
-    "request-promise-native": "^1.0.7",
-    "tmp": "^0.1.0",
-    "dmg": "^0.1.0"
+    "tmp": "^0.1.0"
   },
   "devDependencies": {
     "eslint": "^5.3.0",
