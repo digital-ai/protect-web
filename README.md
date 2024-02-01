@@ -8,10 +8,9 @@ Before you can install or use this package, you must:
 
 1. Be a current Digital.ai customer.
 2. Review the platform requirements in the most recent version of the *Digital.ai Web App Protection* online help, which is available from Digital.ai.
-3. Obtain an API Key, API Secret, and License Token from Digital.ai.
+3. Obtain an API Key, API Secret, and License Token (optional) from Digital.ai.
     * Make sure the API Key has the "Product download" checkbox checked.
 4. Add the following environment variables:
-    * `PROTECT_LICENSE_REGION` variable is optional, the default region is "NorthAmerica".
 
 ```
 PROTECT_API_KEY="myapikey"
@@ -20,9 +19,13 @@ PROTECT_LICENSE_TOKEN="mylicensetoken"
 PROTECT_LICENSE_REGION="myregion"
 ```
 
-**NOTE:** PROTECT_LICENSE_TOKEN can be setup after the package has been installed.
+**NOTE:** `PROTECT_LICENSE_TOKEN` can be setup after the package has been installed.
 
-**NOTE:** PROTECT_API_KEY, PROTECT_API_SECRET and PROTECT_LICENSE_REGION can be setup before the package has been installed, or after. If they are setup after the package has been installed, then the package dependencies will be downloaded the first time the protection is run. Otherwise, the package dependencies are downloaded during the package installation.
+**NOTE:** `PROTECT_LICENSE_REGION` variable is optional, the default region is "NorthAmerica".
+
+**NOTE:** `PROTECT_API_KEY`, `PROTECT_API_SECRET` and `PROTECT_LICENSE_REGION` can be setup before the package has been installed, or after. If they are set up after the package has been installed, then the package dependencies will be downloaded the first time the protection is run. Otherwise, the package dependencies are downloaded during the package installation.
+
+**NOTE:** Instead of providing a license token as `PROTECT_LICENSE_TOKEN`, an alternative command can be used to set up licensing interactively, see the section "License setup" below
 
 **NOTE:** This package should not be installed globally.
 
@@ -40,7 +43,7 @@ const blueprint = {
     targets: {
         main: {
             "input": "./dist",
-            "outputDirectory": "./dist_protected"
+            "output": "./dist_protected"
         }
     }
 }
@@ -52,7 +55,7 @@ protect(blueprint).then((output) => {
 });
 ```
 
-Notice the object called `blueprint`. To apply essential protection, you only need to modify the values of `"input"` and `"outputDirectory"`, where `"./dist"` is the directory that contains your input files and `"./dist_protected"` is the directory where the final protected files will appear.
+Notice the object called `blueprint`. To apply essential protection, you only need to modify the values of `"input"` and `"output"`, where `"./dist"` is the directory that contains your input files and `"./dist_protected"` is the directory where the final protected files will appear.
 
 However, you can further customize your protection by modifying the `blueprint` object. For instructions, see the *Digital.ai Web App Protection* online help, which is available from Digital.ai.
 
@@ -124,7 +127,7 @@ You can set the following values for ```logging```:
 
 **NOTE:** Multiple targets are not supported when protecting with Webpack.
 
-**NOTE:** Blueprint target options (```input```, ```outputDirectory```, ```outputFile```, ```stdin```, ```ignorePaths``` and ```validateIgnorePaths```) are overwritten with Webpack values.
+**NOTE:** Blueprint target options (```input```, ```output```, ```stdin```, ```ignorePaths``` and ```validateIgnorePaths```) are overwritten with Webpack values.
 
 You can also provide an `options` object, just like for the `protect` function described above.
 
@@ -137,6 +140,25 @@ A modified example from above with a verbose output would look like this:
         new WebpackPlugin(blueprint, {verbose: true})
 ...
 ```
+
+## License Setup
+
+Instead of providing a license token as `PROTECT_LICENSE_TOKEN` variable, an alternative can be invoked to set up the
+licensing, based on the operating system:
+
+```npm explore protect-web -- npm run setup-linux -- --license-setup```
+
+```npm explore protect-web -- npm run setup-mac -- --license-setup```
+
+```npm explore protect-web -- npm run setup-windows -- --license-setup```
+
+This will start an interactive licensing setup, which will then store the result for any future protections. This only
+needs to be invoked once, before any protection.
+
+Then provide `PROTECT_LICENSE_TOKEN` variable with a value of `setup` to tell protection that a license token was set up
+this way:
+
+```export PROTECT_LICENSE_TOKEN="setup"```
 
 ## Learn More
 
