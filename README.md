@@ -74,6 +74,8 @@ protect(blueprint, {bufferSize: 1048576}).then((output) => {
 
 ### Protect with Webpack
 
+**NOTE**: Both Webpack 4 and 5 are supported. If using Webpack 5, only versions 5.8.0+ are supported.
+
 To run protection within a webpack bundle, add the protection code to `webpack.config.js`.
 
 This example applies essential protection:
