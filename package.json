@@ -1,6 +1,6 @@
 {
   "name": "protect-web",
-  "version": "7.4.0",
+  "version": "7.5.0",
   "description": "Digital.ai Web App Protection",
   "main": "index.js",
   "scripts": {
