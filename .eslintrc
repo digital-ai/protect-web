@@ -9,5 +9,10 @@
   },
   "rules": {
     "react/no-is-mounted": "off"
+  },
+  "settings": {
+    "react": {
+      "version": "19.1.1"
+    }
   }
 }
